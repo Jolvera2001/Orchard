@@ -141,3 +141,19 @@ build-iPhoneSimulator/
 
 .pulumi/
 
+# Built CSS output
+/public/css/application.css
+
+# Node modules if you end up using any
+/node_modules/
+
+# Environment files
+.env
+.env.local
+
+# Logs
+*.log
+
+# Database
+/db/*.sqlite3
+
