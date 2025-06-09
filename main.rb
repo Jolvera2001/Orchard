@@ -1,5 +1,11 @@
+require 'dotenv/load'
 require 'sinatra'
+require 'mongoid'
 require 'haml'
+
+Mongoid.load!('config/mongoid.yml', :development)
+
+require_relative 'models/TestModel'
 
 set :haml, :format => :html5
 
@@ -21,4 +27,16 @@ get "/users/:stub" do
   @page_title = "#{@user_name}'s Profile: Stub is - #{@stub}"
 
   haml :user
+end
+
+# Testing Mongoid here
+
+post "/testadd" do
+  TestModel.create!(name: 'Test Man!', age: 50)
+  "TestModel Created!"
+end
+
+get "/testseeadded" do
+  content_type :json
+  TestModel.all.to_json
 end

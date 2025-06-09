@@ -1,5 +1,10 @@
 require 'tailwindcss/ruby'
 
+desc "Run Sinatra server from Ruby"
+task :run_ruby do
+  ruby "main.rb"
+end
+
 desc "Build CSS from Tailwind source"
 task :build_css do
   puts "Building CSS..."
