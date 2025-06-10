@@ -11,10 +11,6 @@ set :haml, :format => :html5
 
 # Views
 
-get "/test" do
-  send_file 'views/test.html'
-end
-
 get "/" do
   haml :index
 end
