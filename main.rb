@@ -5,11 +5,15 @@ require 'haml'
 
 Mongoid.load!('config/mongoid.yml', :development)
 
-require_relative 'models/test_model'
+require_relative 'models/user'
 
 set :haml, :format => :html5
 
 # Views
+
+get "/test" do
+  send_file 'views/test.html'
+end
 
 get "/" do
   haml :index
@@ -21,11 +25,22 @@ end
 
 get "/profile/:id" do
   id = params['id']
+  @profile = User.find(id)
+
   haml :profile
 end
 
 # APIs
 
 post "/signup" do
+  user = User.create!(
+    email: params[:email],
+    password_hash: params[:password],
+  )
 
+  if user.save
+    "User Create Successfully"
+  else
+    "Error occurred!"
+  end
 end

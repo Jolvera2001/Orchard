@@ -1,3 +1,7 @@
-.container{"x-data" => "{value: 0}"}
-  %button{"x-on:click" => "value++"} Increment
-  %span{"x-text" => "value"}
+.container.mx-auto
+  .flex.flex-col.spacing-y-4{"x-data" => "{value: 0}"}
+    %h1 Hello world!
+    %h2 Is this working?
+    .flex.flex-row.gap-2.justify-center
+      %button{"x-on:click" => "value++"} Increment
+      %span{"x-text" => "value"}
