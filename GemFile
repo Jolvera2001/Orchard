@@ -11,3 +11,5 @@ gem "puma"
 gem "rackup"
 gem "rake"
 gem "tailwindcss-ruby", "~> 4.1"
+
+gem "bcrypt", "~> 3.1"
