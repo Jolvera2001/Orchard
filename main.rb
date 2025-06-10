@@ -5,7 +5,7 @@ require 'haml'
 
 Mongoid.load!('config/mongoid.yml', :development)
 
-require_relative 'models/TestModel'
+require_relative 'models/test_model'
 
 set :haml, :format => :html5
 
