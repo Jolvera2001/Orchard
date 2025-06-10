@@ -31,7 +31,7 @@ end
 post "/signup" do
   user = User.create!(
     email: params[:email],
-    password_hash: params[:password],
+    password: params[:password],
   )
 
   if user.save
