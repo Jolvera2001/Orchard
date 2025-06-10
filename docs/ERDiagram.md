@@ -10,6 +10,20 @@ Strict schemas aren't necessary, but this diagram is a good rule of thumb. Some 
 title: ER Diagram
 ---
 erDiagram
+    USER {
+        string email
+        string password
+    }
+    
+    PROFILE {
+        string username
+        string stub
+    }
+    
+    LINKS {
+        string url
+    }
+    
     USER ||--|| PROFILE : Manages
     PROFILE ||--|{ LINKS : Contains
     PROFILE ||--|| THEME : Applies
