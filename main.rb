@@ -29,12 +29,11 @@ end
 # APIs
 
 post "/signup" do
-  # TODO: Keep emails unique; no repeating for query in signin
-  # maybe this is doable within the model, look at mongoid docs
   user = User.create!(
     email: params[:email],
     password: params[:password],
   )
+  profile = user.profiles.create(username: params[:username], slug: params[:slug])
 
   if user.save
     "User Create Successfully"

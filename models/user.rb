@@ -7,7 +7,7 @@ class User
 
   validate :email , uniqueness: { message: "email has already been taken" }
 
-  has_many :profile, dependent: :destroy
+  has_many :profiles, dependent: :destroy
 
   def password=(new_password)
     self.password_hash = BCrypt::Password.create(new_password, cost: 12)
