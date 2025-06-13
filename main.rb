@@ -29,6 +29,8 @@ end
 # APIs
 
 post "/signup" do
+  # TODO: Keep emails unique; no repeating for query in signin
+  # maybe this is doable within the model, look at mongoid docs
   user = User.create!(
     email: params[:email],
     password: params[:password],
@@ -39,4 +41,9 @@ post "/signup" do
   else
     "Error occurred!"
   end
+end
+
+post "/signin" do
+  user = User.find_by!(email: params[:email]) or halt 404, "User not found"
+  redirect "/profile/#{user.id}"
 end
