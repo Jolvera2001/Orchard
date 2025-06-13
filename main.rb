@@ -33,10 +33,13 @@ post "/signup" do
     email: params[:email],
     password: params[:password],
   )
-  profile = user.profiles.create(username: params[:username], slug: params[:slug])
+  profile = user.profiles.create(
+    username: params[:username],
+    slug: params[:slug]
+  )
 
   if user.save
-    "User Create Successfully"
+    redirect "/profile/#{user.id}"
   else
     "Error occurred!"
   end
@@ -44,5 +47,6 @@ end
 
 post "/signin" do
   user = User.find_by!(email: params[:email]) or halt 404, "User not found"
-  redirect "/profile/#{user.id}"
+  profile = user.profiles.first
+  redirect "/profile/#{profile.id}"
 end
