@@ -21,7 +21,7 @@ end
 
 get "/profile/:id" do
   id = params['id']
-  @profile = User.find(id)
+  @profile = Profile.find(id)
 
   haml :profile
 end
