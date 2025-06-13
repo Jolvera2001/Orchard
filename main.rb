@@ -43,7 +43,16 @@ post "/signup" do
 end
 
 post "/signin" do
-  user = User.find_by!(email: params[:email]) or halt 404, "User not found"
-  profile = user.profiles.first
-  redirect "/profile/#{profile.id}"
+  begin
+    user = User.find_by!(email: params[:email])
+
+    if user.authenticate(params[:password])
+      profile = user.profiles.first
+      redirect "/profile/#{profile.id}"
+    else
+      halt 401, "Unauthorized"
+    end
+  rescue Mongoid::Errors::DocumentNotFound
+    halt 404, "User not found"
+  end
 end
