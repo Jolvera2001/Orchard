@@ -5,6 +5,8 @@ class User
   field :email, type: String
   field :password_hash, type: String
 
+  validate :email , uniqueness: { message: "email has already been taken" }
+
   has_many :profile, dependent: :destroy
 
   def password=(new_password)
