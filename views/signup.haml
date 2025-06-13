@@ -1,35 +1,25 @@
-.container.mx-auto{"x-data" => "{ mode: 'signin' }", "x-cloak" => true}
-  -# toggle buttons
-  .mode-switch.mb-4
-    %button.btn{"@click" => "mode = 'signin'", ":class" => "mode === 'signin' ? 'active' : 'inactive'"}
+.max-w-md.mx-auto.mt-8.p-6.border.rounded{"x-data" => "{ mode: 'signin' }"}
+  -# Simple toggle buttons
+  .flex.gap-2.mb-6
+    %button.px-4.py-2.border.rounded{"@click" => "mode = 'signin'", ":class" => "mode === 'signin' ? 'bg-blue-500 text-white' : 'bg-gray-100'"}
       Sign In
-    %button.btn{"@click" => "mode = 'signup'", ":class" => "mode === 'signup' ? 'active' : 'inactive'"}
+    %button.px-4.py-2.border.rounded{"@click" => "mode = 'signup'", ":class" => "mode === 'signup' ? 'bg-blue-500 text-white' : 'bg-gray-100'"}
       Sign Up
 
-  -# forms
-  %form.signup-form{"x-show" => "mode === 'signup'", "x-transition" => true, action: '/signup', method: "POST"}
-    %h2 Create Account
-    .form-group
-      %label{for: 'username'} Username:
-      %input{type: "username", id: "username", name: "username", required: true}
+  -# Signup Form
+  %div{"x-show" => "mode === 'signup'"}
+    %h2.text-xl.mb-4 Create Account
+    %form.space-y-3{action: '/signup', method: 'POST'}
+      %input.w-full.p-2.border.rounded{type: 'text', name: 'username', placeholder: 'Username', required: true}
+      %input.w-full.p-2.border.rounded{type: 'text', name: 'stub', placeholder: 'Stub', required: true}
+      %input.w-full.p-2.border.rounded{type: 'email', name: 'email', placeholder: 'Email', required: true}
+      %input.w-full.p-2.border.rounded{type: 'password', name: 'password', placeholder: 'Password', required: true}
+      %button.w-full.p-2.bg-blue-500.text-white.rounded{type: 'submit'} Sign Up
 
-      %label{for: 'stub'} Stub:
-      %input{type: "stub", id: "stub", name: "stub", required: true}
-
-      %label{for: 'email'} Email:
-      %input{type: "email", id: "email", name: "email", required: true}
-
-      %label{for: 'password'} Password:
-      %input{type: "password", id: "password", name: "password", required: true}
-
-      %button{type: "submit"} Sign up
-  %form.signin-form{"x-show" => "mode === 'signin'", "x-transition" => true, action: '/signup', method: "POST"}
-    %h2 Welcome Back
-    .form-group
-      %label{for: 'emailSignin'} Email:
-      %input{type: "email", id: "emailSignin", name: "email", required: true}
-
-      %label{for: 'passwordSignin'} Password:
-      %input{type: "password", id: "passwordSignin", name: "password", required: true}
-
-      %button{type: "submit"} Sign In
+  -# Signin Form
+  %div{"x-show" => "mode === 'signin'"}
+    %h2.text-xl.mb-4 Welcome Back
+    %form.space-y-3{action: '/signin', method: 'POST'}
+      %input.w-full.p-2.border.rounded{type: 'email', name: 'email', placeholder: 'Email', required: true}
+      %input.w-full.p-2.border.rounded{type: 'password', name: 'password', placeholder: 'Password', required: true}
+      %button.w-full.p-2.bg-blue-500.text-white.rounded{type: 'submit'} Sign In
