@@ -6,6 +6,7 @@ require 'haml'
 Mongoid.load!('config/mongoid.yml', :development)
 
 require_relative 'models/user'
+require_relative 'models/profile'
 
 set :haml, :format => :html5
 
@@ -38,11 +39,7 @@ post "/signup" do
     slug: params[:slug]
   )
 
-  if user.save
-    redirect "/profile/#{user.id}"
-  else
-    "Error occurred!"
-  end
+  redirect "/profile/#{profile.id}"
 end
 
 post "/signin" do
